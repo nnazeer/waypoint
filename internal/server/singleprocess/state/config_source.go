@@ -91,7 +91,6 @@ func (s *State) configSourceGetMerged(
 	ws memdb.WatchSet,
 	req *pb.GetConfigSourceRequest,
 ) ([]*pb.ConfigSource, error) {
-	var mergeSet [][]*pb.ConfigSource
 	switch scope := req.Scope.(type) {
 	case *pb.GetConfigSourceRequest_Global:
 		return s.configSourceGetExact(dbTxn, memTxn, ws, scope.Global, req.Type)
@@ -100,20 +99,8 @@ func (s *State) configSourceGetMerged(
 		panic("unknown scope")
 	}
 
-	// Merge our merge set
-	merged := make(map[string]*pb.ConfigSource)
-	for _, set := range mergeSet {
-		for _, v := range set {
-			merged[v.Type] = v
-		}
-	}
-
-	result := make([]*pb.ConfigSource, 0, len(merged))
-	for _, v := range merged {
-		result = append(result, v)
-	}
-
-	return result, nil
+	// In the future, when we implement scoping, this is where we'd do merging.
+	// See the logic in config.go for more details.
 }
 
 // configSourceGetExact returns the list of config sources for a scope
