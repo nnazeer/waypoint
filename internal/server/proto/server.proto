@@ -104,7 +104,7 @@ service Waypoint {
   // the most specific matching config source given the scope in the request.
   // For example, if you search for an app-specific config source and only
   // a global config exists, the global config will be returned.
-  //rpc GetConfigSource(GetConfigSourceRequest) returns (GetConfigSourceResponse);
+  rpc GetConfigSource(GetConfigSourceRequest) returns (GetConfigSourceResponse);
 
   // Create a hostname with the URL service.
   rpc CreateHostname(CreateHostnameRequest) returns (CreateHostnameResponse);
@@ -1892,7 +1892,7 @@ message GetConfigSourceRequest {
 }
 
 message GetConfigSourceResponse {
-  repeated ConfigSource config_source = 1;
+  repeated ConfigSource config_sources = 1;
 }
 
 /********************************************************************

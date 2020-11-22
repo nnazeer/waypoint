@@ -279,6 +279,29 @@ func (_m *WaypointServer) GetConfig(_a0 context.Context, _a1 *gen.ConfigGetReque
 	return r0, r1
 }
 
+// GetConfigSource provides a mock function with given fields: _a0, _a1
+func (_m *WaypointServer) GetConfigSource(_a0 context.Context, _a1 *gen.GetConfigSourceRequest) (*gen.GetConfigSourceResponse, error) {
+	ret := _m.Called(_a0, _a1)
+
+	var r0 *gen.GetConfigSourceResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *gen.GetConfigSourceRequest) *gen.GetConfigSourceResponse); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*gen.GetConfigSourceResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *gen.GetConfigSourceRequest) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetDeployment provides a mock function with given fields: _a0, _a1
 func (_m *WaypointServer) GetDeployment(_a0 context.Context, _a1 *gen.GetDeploymentRequest) (*gen.Deployment, error) {
 	ret := _m.Called(_a0, _a1)
